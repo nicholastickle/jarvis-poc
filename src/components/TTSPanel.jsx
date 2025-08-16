@@ -1,63 +1,55 @@
-import { useState } from "react";
-import "./TTSPanel.css";
+import { useState } from 'react'
+import './TTSPanel.css'
+import { config } from '../config/env.js'
+import { ttsService } from '../services/ttsService.js'
 
 export default function TTSPanel() {
-  const [text, setText] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [text, setText] = useState('')
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSpeak = async () => {
-    if (!text.trim()) return;
-    setLoading(true);
+    if (!text.trim()) return
+    
+    setIsPlaying(true)
+    setError('')
 
     try {
-      const response = await fetch("https://api.openai.com/v1/audio/speech", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "tts-1-hd",
-          voice: "alloy",
-          input: text,
-          response_format: "mp3",
-          speed: 1.0, // Control speed (0.25 to 4.0)
-        }),
-      });
-
-      // Check if the response is successful
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!config.isConfigured()) {
+        throw new Error('OpenAI API key not configured. Please add your API key to use TTS.')
       }
 
-      const arrayBuffer = await response.arrayBuffer();
-      const base64Audio = btoa(
-        new Uint8Array(arrayBuffer).reduce(
-          (data, byte) => data + String.fromCharCode(byte),
-          ""
-        )
-      );
-
-      const audio = new Audio(`data:audio/mpeg;base64,${base64Audio}`);
-      audio.play();
-    } catch (err) {
-      console.error("Error calling TTS API:", err);
+      await ttsService.speakText(text)
+    } catch (error) {
+      console.error('TTS error:', error)
+      setError(error.message || 'Failed to synthesize speech')
     } finally {
-      setLoading(false);
+      setIsPlaying(false)
     }
-  };
+  }
 
   return (
     <div className="tts-panel">
-      <h2>Text to Speech</h2>
+      <div className="status">
+        {config.isConfigured() ? '✅ TTS Ready' : '🔄 API Key Required'}
+      </div>
+
+      {error && <div className="error">❌ {error}</div>}
+
       <textarea
-        placeholder="Type something here..."
+        placeholder="Type something to convert to speech..."
         value={text}
         onChange={(e) => setText(e.target.value)}
+        disabled={isPlaying}
       />
-      <button onClick={handleSpeak} disabled={!text.trim() || loading}>
-        {loading ? "Speaking..." : "Speak"}
+      
+      <button 
+        onClick={handleSpeak} 
+        disabled={!text.trim() || isPlaying || !config.isConfigured()}
+        className={isPlaying ? 'speaking' : ''}
+      >
+        {isPlaying ? '🔊 Speaking...' : '🎤 Speak'}
       </button>
     </div>
-  );
+  )
 }
