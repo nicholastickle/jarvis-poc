@@ -1,14 +1,68 @@
+/* App Layout */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.app-header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #646cff, #61dafb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.app-header p {
+  color: #888;
+  font-size: 1.1rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.app-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .app-main {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.stt-section, .tts-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
 /* Clean STT + OpenAI Interface */
 .voice-assistant {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
+  width: 100%;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-header h1 {
-  font-size: 2rem;
+.voice-assistant header h1 {
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
   background: linear-gradient(45deg, #646cff, #61dafb);
   -webkit-background-clip: text;
@@ -132,13 +186,18 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .voice-assistant {
-    padding: 1rem;
-    margin: 1rem;
+  .app-header h1 {
+    font-size: 2rem;
   }
   
-  header h1 {
-    font-size: 1.5rem;
+  .app-main {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .stt-section, .tts-section {
+    padding: 1rem;
   }
   
   .voice-btn {

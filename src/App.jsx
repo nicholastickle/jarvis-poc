@@ -4,17 +4,21 @@ import TTSPanel from './components/TTSPanel'
 
 function App() {
   return (
-    <div>
-      <h1>Jarvis - Voice Assistant</h1>
-      <div>
-        <div>
-          <h2>Speech to Text & AI</h2>
+    <div className="app-container">
+      <header className="app-header">
+        <h1>Jarvis - Voice Assistant</h1>
+        <p>Speak to AI, get intelligent responses</p>
+      </header>
+      
+      <main className="app-main">
+        <section className="stt-section">
           <VoiceAssistant />
-        </div>
-        <div>
+        </section>
+        
+        <section className="tts-section">
           <TTSPanel />
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   )
 }

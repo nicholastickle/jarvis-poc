@@ -114,13 +114,10 @@ export function VoiceAssistant() {
 
   return (
     <div className="voice-assistant">
-      <header>
-        <h1>🎤 STT + OpenAI</h1>
-        <div className="status">
-          {config.isConfigured() ? '✅ OpenAI Ready' : '🔄 Mock Mode'} | 
-          History: {conversationHistory.length}
-        </div>
-      </header>
+      <div className="status">
+        {config.isConfigured() ? '✅ OpenAI Ready' : '🔄 Mock Mode'} | 
+        History: {conversationHistory.length}
+      </div>
 
       <main>
         {error && <div className="error">❌ {error}</div>}
