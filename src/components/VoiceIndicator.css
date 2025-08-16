@@ -1,0 +1,85 @@
+/* .voice-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-circle {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #4f46e5, #7c3aed);
+  border: 3px solid #e0e7ff;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.voice-circle.idle {
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.voice-circle.speaking {
+  animation: pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+}
+
+.inner-circle {
+  width: 60%;
+  height: 60%;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.voice-circle.speaking .inner-circle {
+  animation: innerPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes innerPulse {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+}
+
+/* Optional: Add a subtle glow effect */
+/* .voice-circle.speaking::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(79, 70, 229, 0.3), rgba(124, 58, 237, 0.3));
+  animation: glow 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+} */
