@@ -1,29 +1,32 @@
 
 import TTSPanel from "./components/TTSPanel";
-import VoiceIndicator from './components/VoiceIndicator.jsx';
+// import VoiceIndicator from './components/VoiceIndicator.jsx';
 import './App.css'
+import { VoiceAssistant } from './components/VoiceAssistant.jsx'
 
 function App() {
 
-  const [isVoicePlaying, setIsVoicePlaying] = useState(false);
+  // const [isVoicePlaying, setIsVoicePlaying] = useState(false);
 
   return (
     <>
-      <h1>Jarvis Proof of Concept</h1>
-      <div>
-        <div>
-          {/* Section for testing speech to text */}
-        </div>
-        <div>
-          {/* Section for testing prompting the AI */}
-        </div>
-        <div>
-          {/* Section for testing text to speech */}
-          <TTSPanel />
-          <VoiceIndicator isPlaying={isVoicePlaying} size={80} />
-        </div>
-      </div>
+      <div className="app-container">
+        <header className="app-header">
+          <h1>Jarvis - Voice Assistant</h1>
+          <p>Speak to AI, get intelligent responses</p>
+        </header>
 
+        <main className="app-main">
+          <section className="stt-section">
+            <VoiceAssistant />
+          </section>
+
+          <section className="tts-section">
+            <TTSPanel />
+            {/* <VoiceIndicator isPlaying={isVoicePlaying} size={80} /> */}
+          </section>
+        </main>
+      </div>
 
     </>
   )

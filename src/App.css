@@ -1,42 +1,204 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.app-header {
   text-align: center;
+  padding: 2rem 1rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #646cff, #61dafb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
+.app-header p {
   color: #888;
+  font-size: 1.1rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.app-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .app-main {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.stt-section, .tts-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.voice-assistant {
+  width: 100%;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.voice-assistant header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #646cff, #61dafb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.status {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+main {
+  margin: 2rem 0;
+}
+
+.voice-btn {
+  background: linear-gradient(45deg, #646cff, #61dafb);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 1rem;
+  box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+  min-width: 150px;
+}
+
+.voice-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 108, 255, 0.4);
+}
+
+.voice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.voice-btn.listening {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.listening {
+  color: #ff6b6b;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  animation: pulse 1s infinite;
+}
+
+.error {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.result {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.result strong {
+  color: #646cff;
+}
+
+.history {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.history h3 {
+  color: #646cff;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.history-item {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+  border-left: 3px solid #646cff;
+}
+
+.history-item small {
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.history-item div {
+  margin: 0.3rem 0;
+}
+
+body {
+  background: #1a1a1a;
+  color: #ffffff;
+  margin: 0;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .app-main {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .stt-section, .tts-section {
+    padding: 1rem;
+  }
+  
+  .voice-btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    min-width: 130px;
+  }
 }
