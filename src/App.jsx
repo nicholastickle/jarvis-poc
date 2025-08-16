@@ -1,9 +1,11 @@
 
 import TTSPanel from "./components/TTSPanel";
+import VoiceIndicator from './components/VoiceIndicator.jsx';
 import './App.css'
 
 function App() {
 
+  const [isVoicePlaying, setIsVoicePlaying] = useState(false);
 
   return (
     <>
@@ -18,6 +20,7 @@ function App() {
         <div>
           {/* Section for testing text to speech */}
           <TTSPanel />
+          <VoiceIndicator isPlaying={isVoicePlaying} size={80} />
         </div>
       </div>
 
