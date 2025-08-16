@@ -1,14 +1,10 @@
 import { config } from '../config/env.js'
+import { BaseOpenAIService } from './baseOpenAIService.js'
 
-export class OpenAIService {
+export class OpenAIService extends BaseOpenAIService {
   constructor() {
-    this.apiKey = config.openai.apiKey
+    super()
     this.model = config.openai.model
-    this.baseUrl = 'https://api.openai.com/v1'
-  }
-
-  isConfigured() {
-    return !!this.apiKey
   }
 
   async getResponse(userInput, conversationHistory = []) {
