@@ -1,6 +1,3 @@
-// OpenAI API Service
-// This is your main responsibility - STT → OpenAI API → Text Response
-
 import { config } from '../config/env.js'
 
 export class OpenAIService {
@@ -10,21 +7,10 @@ export class OpenAIService {
     this.baseUrl = 'https://api.openai.com/v1'
   }
 
-  /**
-   * Check if OpenAI is properly configured
-   * @returns {boolean}
-   */
   isConfigured() {
     return !!this.apiKey
   }
 
-  /**
-   * Send user input to OpenAI and get text response
-   * This is the main method you'll be focusing on
-   * @param {string} userInput - The transcribed speech or typed text
-   * @param {Array} conversationHistory - Previous messages for context
-   * @returns {Promise<string>} - AI response text
-   */
   async getResponse(userInput, conversationHistory = []) {
     if (!this.isConfigured()) {
       throw new Error('OpenAI API key not configured')
@@ -51,7 +37,7 @@ export class OpenAIService {
           messages: messages,
           max_tokens: 150,
           temperature: 0.7,
-          stream: false // Nick might want to implement streaming later
+          stream: false
         })
       })
 
@@ -73,11 +59,6 @@ export class OpenAIService {
     }
   }
 
-  /**
-   * Build conversation context for the API call
-   * @param {Array} history - Previous conversation entries
-   * @returns {Array} - Formatted messages for OpenAI API
-   */
   buildConversationContext(history) {
     const messages = [
       {
@@ -86,7 +67,6 @@ export class OpenAIService {
       }
     ]
 
-    // Add recent conversation history (last 5 exchanges to avoid token limits)
     const recentHistory = history.slice(-5)
     
     recentHistory.forEach(entry => {
@@ -99,24 +79,13 @@ export class OpenAIService {
     return messages
   }
 
-  /**
-   * Estimate token usage (useful for cost tracking)
-   * @param {string} text 
-   * @returns {number} - Rough token estimate
-   */
   estimateTokens(text) {
-    // Rough estimate: ~4 characters per token
     return Math.ceil(text.length / 4)
   }
 
-  /**
-   * Get current model being used
-   * @returns {string}
-   */
   getCurrentModel() {
     return this.model
   }
 }
 
-// Create singleton instance
 export const openaiService = new OpenAIService()

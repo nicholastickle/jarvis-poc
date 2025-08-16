@@ -1,6 +1,3 @@
-// STT + OpenAI Integration Component
-// Your focus: Speech → Transcription → OpenAI → Text Response
-
 import { useState, useRef, useEffect } from 'react'
 import { config } from '../config/env.js'
 import { openaiService } from '../services/openaiService.js'
@@ -14,7 +11,6 @@ export function VoiceAssistant() {
   
   const recognitionRef = useRef(null)
 
-  // Initialize Web Speech API
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -44,7 +40,6 @@ export function VoiceAssistant() {
     try {
       let aiResponse
       
-      // Try OpenAI first, fallback to mock
       if (config.isConfigured()) {
         aiResponse = await openaiService.getResponse(speechText, conversationHistory)
       } else {
@@ -53,7 +48,6 @@ export function VoiceAssistant() {
       
       setResponse(aiResponse)
       
-      // Add to conversation history
       const newEntry = {
         id: Date.now(),
         timestamp: new Date().toLocaleTimeString(),
@@ -83,7 +77,6 @@ export function VoiceAssistant() {
     
     const lowerInput = input.toLowerCase()
     
-    // Special command to clear history
     if (lowerInput.includes('clear')) {
       setConversationHistory([])
       setTranscript('')

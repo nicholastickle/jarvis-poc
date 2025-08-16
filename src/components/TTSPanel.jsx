@@ -4,11 +4,9 @@ import "./TTSPanel.css";
 export default function TTSPanel() {
   const [text, setText] = useState("");
 
-  // Async function for the button click
   const handleSpeak = async () => {
     try {
-      // Simulate async behavior (e.g., API call)
-      await new Promise((resolve) => setTimeout(resolve, 100)); // just a dummy async wait
+      await new Promise((resolve) => setTimeout(resolve, 100));
       console.log("Text to submit:", text);
     } catch (error) {
       console.error("Error handling text:", error);
