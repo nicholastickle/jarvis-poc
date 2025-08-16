@@ -30,6 +30,8 @@ export function VoiceAssistant() {
         setError(`Speech error: ${event.error}`)
         setIsListening(false)
       }
+    } else {
+      setError('Speech recognition not supported in this browser. Please use Chrome.')
     }
   }, [])
 
