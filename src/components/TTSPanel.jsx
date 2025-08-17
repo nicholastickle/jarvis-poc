@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './TTSPanel.css'
 import { config } from '../config/env.js'
 import { ttsService } from '../services/ttsService.js'
+import VoiceIndicator from './VoiceIndicator'
 
 export default function TTSPanel() {
   const [text, setText] = useState('')
@@ -10,7 +11,7 @@ export default function TTSPanel() {
 
   const handleSpeak = async () => {
     if (!text.trim()) return
-    
+
     setIsPlaying(true)
     setError('')
 
@@ -19,10 +20,14 @@ export default function TTSPanel() {
         throw new Error('OpenAI API key not configured. Please add your API key to use TTS.')
       }
 
-      await ttsService.speakText(text)
+      await ttsService.speakText(text, {}, setIsPlaying)
+
+
+
     } catch (error) {
       console.error('TTS error:', error)
       setError(error.message || 'Failed to synthesize speech')
+      setIsPlaying(false)
     } finally {
       setIsPlaying(false)
     }
@@ -42,14 +47,17 @@ export default function TTSPanel() {
         onChange={(e) => setText(e.target.value)}
         disabled={isPlaying}
       />
-      
-      <button 
-        onClick={handleSpeak} 
+
+      <button
+        onClick={handleSpeak}
         disabled={!text.trim() || isPlaying || !config.isConfigured()}
         className={isPlaying ? 'speaking' : ''}
       >
         {isPlaying ? '🔊 Speaking...' : '🎤 Speak'}
       </button>
+      <div className="voice-indicator-container">
+        <VoiceIndicator isPlaying={isPlaying} size={60} />
+      </div>
     </div>
   )
 }

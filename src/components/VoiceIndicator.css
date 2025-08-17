@@ -1,4 +1,4 @@
-/* .voice-indicator {
+.voice-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,10 +38,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.8;
   }
+
   50% {
     transform: scale(1.1);
     opacity: 1;
@@ -49,10 +52,13 @@
 }
 
 @keyframes innerPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.9;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: scale(0.8);
@@ -60,7 +66,7 @@
 }
 
 /* Optional: Add a subtle glow effect */
-/* .voice-circle.speaking::before {
+.voice-circle.speaking::before {
   content: '';
   position: absolute;
   top: -10px;
@@ -74,12 +80,15 @@
 }
 
 @keyframes glow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
   }
-} */
+}

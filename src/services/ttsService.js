@@ -54,7 +54,7 @@ export class TTSService {
     }
   }
 
-  async playAudio(audioBuffer) {
+  async playAudio(audioBuffer, onPlayStateChange = null) {
     try {
       const base64Audio = btoa(
         new Uint8Array(audioBuffer).reduce(
@@ -64,10 +64,31 @@ export class TTSService {
       )
 
       const audio = new Audio(`data:audio/mpeg;base64,${base64Audio}`)
-      
+
       return new Promise((resolve, reject) => {
         audio.onended = resolve
         audio.onerror = reject
+
+        audio.addEventListener('play', () => {
+          if (onPlayStateChange) onPlayStateChange(true)
+        })
+
+        audio.addEventListener('ended', () => {
+          if (onPlayStateChange) onPlayStateChange(false)
+          resolve()
+        })
+
+        audio.addEventListener('error', (error) => {
+          if (onPlayStateChange) onPlayStateChange(false)
+          reject(error)
+        })
+
+        audio.addEventListener('pause', () => {
+          if (onPlayStateChange) onPlayStateChange(false)
+        })
+
+
+
         audio.play().catch(reject)
       })
     } catch (error) {
@@ -76,9 +97,9 @@ export class TTSService {
     }
   }
 
-  async speakText(text, options = {}) {
+  async speakText(text, options = {}, onPlayStateChange = null) {
     const audioBuffer = await this.synthesizeSpeech(text, options)
-    await this.playAudio(audioBuffer)
+    await this.playAudio(audioBuffer, onPlayStateChange)
   }
 }
 
