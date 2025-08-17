@@ -1,12 +1,13 @@
 
+import { useState } from 'react';
 import TTSPanel from "./components/TTSPanel";
-// import VoiceIndicator from './components/VoiceIndicator.jsx';
+
 import './App.css'
 import { VoiceAssistant } from './components/VoiceAssistant.jsx'
 
 function App() {
 
-  // const [isVoicePlaying, setIsVoicePlaying] = useState(false);
+  
 
   return (
     <>
@@ -23,7 +24,7 @@ function App() {
 
           <section className="tts-section">
             <TTSPanel />
-            {/* <VoiceIndicator isPlaying={isVoicePlaying} size={80} /> */}
+            
           </section>
         </main>
       </div>
