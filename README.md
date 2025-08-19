@@ -4,6 +4,11 @@
 
 A modern web-based voice assistant built with React and OpenAI APIs, featuring real-time speech recognition, natural language processing, and audio responses.
 
+## Demo
+
+![Jarvis Voice Assistant Interface](./screenshots/jarvis-interface.png)
+*Main interface showing voice controls and conversation history*
+
 ## Features
 
 - **Speech Recognition** - Browser-based voice input (Chrome/Edge)
