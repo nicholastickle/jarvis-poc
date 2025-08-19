@@ -1,14 +1,8 @@
 
-import { useState } from 'react';
-import TTSPanel from "./components/TTSPanel";
-
 import './App.css'
 import { VoiceAssistant } from './components/VoiceAssistant.jsx'
 
 function App() {
-
-  
-
   return (
     <>
       <div className="app-container">
@@ -18,13 +12,8 @@ function App() {
         </header>
 
         <main className="app-main">
-          <section className="stt-section">
+          <section className="voice-section">
             <VoiceAssistant />
-          </section>
-
-          <section className="tts-section">
-            <TTSPanel />
-            
           </section>
         </main>
       </div>

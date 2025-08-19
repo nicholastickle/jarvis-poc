@@ -65,7 +65,7 @@
   }
 }
 
-/* Optional: Add a subtle glow effect */
+/* Glow effect for speaking state */
 .voice-circle.speaking::before {
   content: '';
   position: absolute;
