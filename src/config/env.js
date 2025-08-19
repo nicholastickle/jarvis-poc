@@ -17,10 +17,11 @@ export const config = {
   }
 }
 
+// Debug logging in development mode
 if (config.app.debugMode && import.meta.env.DEV) {
-  console.log('🔧 Environment Configuration:', {
+  console.log('Environment Configuration:', {
     openaiConfigured: config.isConfigured(),
     model: config.openai.model,
-    app: config.app
+    app: config.app.name
   })
 }
