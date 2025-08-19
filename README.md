@@ -9,7 +9,6 @@ A modern web-based voice assistant built with React and OpenAI APIs, featuring r
 - **Speech Recognition** - Browser-based voice input (Chrome/Edge)
 - **OpenAI Integration** - GPT-4o-mini for intelligent conversations  
 - **Text-to-Speech** - OpenAI TTS with natural voice synthesis
-- **Conversation History** - Maintains context across interactions
 - **Responsive Design** - Works on desktop and mobile devices
 - **Fallback Mode** - Mock responses when OpenAI unavailable
 - **Modern UI** - Clean design with smooth animations
@@ -88,7 +87,7 @@ npm run lint     # Run ESLint
 2. **Click "Start Conversation"** to begin voice input
 3. **Speak your question** - the app listens automatically
 4. **Receive audio response** - AI responds with speech
-5. **Continue conversation** - maintains context and history
+5. **Continue conversation** - maintains context(not yet implemented) and history
 
 ### Voice Commands
 - Say **"clear"** to reset conversation history
@@ -132,7 +131,7 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 ## Authors
 
 - **Nicholas Tickle** - [@nicholastickle](https://github.com/nicholastickle)
-- **Brighton Tandabantu** - [@brighton](https://github.com/brighton)
+- **Brighton Tandabantu** - [@brighton](https://github.com/dev-thandabantu)
 
 ## Contributing
 
@@ -144,4 +143,4 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 
 ---
 
-Built with React, OpenAI, and modern web technologies
+Built by friends with React, OpenAI, and modern web technologies
