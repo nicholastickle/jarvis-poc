@@ -14,6 +14,7 @@ export function VoiceAssistant() {
   const [isSpeaking, setIsSpeaking] = useState(false)
 
   const recognitionRef = useRef(null)
+  const handleSpeechResultRef = useRef(null) // Ref to store the latest callback
 
   const getMockResponse = (input) => {
     const responses = {
@@ -98,7 +99,12 @@ export function VoiceAssistant() {
         }
       }
     }
-  }, [conversationHistory]) // Simplified dependencies
+  }, [conversationHistory, getMockResponse]) // Include getMockResponse in dependencies
+
+  // Update the ref whenever the callback changes
+  useEffect(() => {
+    handleSpeechResultRef.current = handleSpeechResult
+  }, [handleSpeechResult])
 
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -111,7 +117,10 @@ export function VoiceAssistant() {
 
       recognitionRef.current.onresult = (event) => {
         const speechResult = event.results[0][0].transcript
-        handleSpeechResult(speechResult)
+        // Use ref to avoid stale closure issues
+        if (handleSpeechResultRef.current) {
+          handleSpeechResultRef.current(speechResult)
+        }
       }
 
       recognitionRef.current.onend = () => {
@@ -125,7 +134,7 @@ export function VoiceAssistant() {
     } else {
       setError('Speech recognition not supported in this browser. Please use Chrome.')
     }
-  }, [handleSpeechResult]) // Only depend on the callback, not autoSpeak directly
+  }, []) // No dependencies - setup once on mount
 
   const toggleListening = () => {
     if (!recognitionRef.current) return
@@ -138,19 +147,6 @@ export function VoiceAssistant() {
       setResponse('')
       setIsListening(true)
       recognitionRef.current.start()
-    }
-  }
-
-  const speakLastResponse = async () => {
-    if (!response) return
-    
-    try {
-      setIsSpeaking(true)
-      await ttsService.speakText(response, {}, (playing) => setIsSpeaking(playing))
-    } catch (ttsError) {
-      console.error('TTS error:', ttsError)
-      setError(`TTS Error: ${ttsError.message}`)
-      setIsSpeaking(false)
     }
   }
 
@@ -181,16 +177,6 @@ export function VoiceAssistant() {
           >
             {isListening ? '🛑 Stop Listening' : isSpeaking ? '⏳ Please Wait...' : '🎤 Start Conversation'}
           </button>
-
-          {response && (
-            <button
-              className="voice-btn secondary"
-              onClick={speakLastResponse}
-              disabled={isSpeaking}
-            >
-              🔊 Repeat Response
-            </button>
-          )}
 
           {conversationHistory.length > 0 && (
             <button

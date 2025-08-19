@@ -126,7 +126,6 @@ main {
 }
 
 @keyframes pulse {
-
     0%,
     100% {
         opacity: 1;
@@ -233,22 +232,4 @@ main {
     margin: 2rem 0;
     display: flex;
     justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .controls {
-        gap: 0.8rem;
-    }
-    
-    .voice-btn.primary {
-        font-size: 1.1rem;
-        padding: 1rem 2rem;
-        min-width: 220px;
-    }
-    
-    .voice-btn.secondary {
-        font-size: 0.9rem;
-        padding: 0.7rem 1.5rem;
-        min-width: 160px;
-    }
 }
