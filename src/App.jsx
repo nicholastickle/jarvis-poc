@@ -19,13 +19,8 @@ function App() {
         </header>
 
         <main className="app-main">
-          <section className="stt-section">
+          <section className="voice-section">
             <VoiceAssistant />
-          </section>
-
-          <section className="tts-section">
-            <TTSPanel />
-            
           </section>
         </main>
       </div> */}
