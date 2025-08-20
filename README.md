@@ -2,21 +2,21 @@
 
 > **Intelligent conversational AI with speech-to-text and text-to-speech capabilities**
 
-A modern web-based voice assistant built with React and OpenAI APIs, featuring real-time speech recognition, natural language processing, and audio responses.
+A web-based voice assistant built with React+vite and OpenAI APIs, featuring real-time speech recognition, natural language processing, and audio responses.
 
 ## Demo
 
-![Jarvis Voice Assistant Interface](./screenshots/jarvis-interface.png)
+![Jarvis Voice Assistant Interface](./screenshots/jarvis-interface-1.png)
+
 *Main interface showing voice controls and conversation history*
 
 ## Features
 
 - **Speech Recognition** - Browser-based voice input (Chrome/Edge)
-- **OpenAI Integration** - GPT-4o-mini for intelligent conversations  
+- **OpenAI Integration** - GPT-4o-mini for conversations  
 - **Text-to-Speech** - OpenAI TTS with natural voice synthesis
 - **Responsive Design** - Works on desktop and mobile devices
-- **Fallback Mode** - Mock responses when OpenAI unavailable
-- **Modern UI** - Clean design with smooth animations
+- **Fallback Mode** - Mock responses when OpenAI API is unavailable
 
 ## Quick Start
 
@@ -68,7 +68,7 @@ VITE_DEBUG_MODE=false
 ```
 
 ### Voice Options
-- **Voices**: `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer`
+- **Voices**: `alloy`, `echo`, `fable`, `onyx`, `nova`
 - **Models**: `gpt-4o-mini`, `gpt-4o`, `gpt-3.5-turbo`
 
 ## Development
@@ -92,11 +92,9 @@ npm run lint     # Run ESLint
 2. **Click "Start Conversation"** to begin voice input
 3. **Speak your question** - the app listens automatically
 4. **Receive audio response** - AI responds with speech
-5. **Continue conversation** - maintains context(not yet implemented) and history
+5. **Continue conversation** - maintains context and history within the session
+6. **Clear conversation history** - clear conversation history to start over
 
-### Voice Commands
-- Say **"clear"** to reset conversation history
-- **"Hello"**, **"time"**, **"weather"**, **"name"** - try built-in responses
 
 ## Architecture
 
@@ -104,28 +102,27 @@ npm run lint     # Run ESLint
 ```
 src/
 ├── components/           # React components
-│   ├── VoiceAssistant.jsx   # Main voice interface
-│   ├── VoiceIndicator.jsx   # Visual feedback component
-│   └── *.css               # Component styles
+│   ├── ChatPanel.jsx   # Main voice interface .jsx
+│   └── ChatPanel.css   # Main voice interface .css
 ├── services/            # API services
 │   ├── openaiService.js    # GPT chat completions
 │   ├── ttsService.js       # Text-to-speech
 │   └── baseOpenAIService.js # Shared API logic
 ├── config/
 │   └── env.js              # Environment configuration
-└── hooks/               # Custom React hooks
+├── App.css
+├── App.jsx
+├── index.css
+└── main.jsx
 ```
 
-### Key Components
-- **VoiceAssistant** - Core voice interface with speech recognition
-- **VoiceIndicator** - Animated visual feedback during interactions  
-- **OpenAI Services** - Modular API integration for chat and TTS
+
 
 ## Browser Compatibility
 
 | Feature | Chrome | Edge | Firefox | Safari |
 |---------|--------|------|---------|--------|
-| Speech Recognition | ✅ | ✅ | ❌ | ❌ |
+| Speech Recognition | ✅ | ❌ | ❌ | ❌ |
 | Text-to-Speech | ✅ | ✅ | ✅ | ✅ |
 | Audio Playback | ✅ | ✅ | ✅ | ✅ |
 
