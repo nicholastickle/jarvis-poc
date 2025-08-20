@@ -3,7 +3,7 @@ export const config = {
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     model: import.meta.env.VITE_OPENAI_MODEL || 'gpt-4o-mini',
     ttsModel: import.meta.env.VITE_OPENAI_TTS_MODEL || 'tts-1',
-    ttsVoice: import.meta.env.VITE_OPENAI_TTS_VOICE || 'alloy'
+    ttsVoice: import.meta.env.VITE_OPENAI_TTS_VOICE || 'onyx' //alloy, echo, fable, onyx, nova, shimmer
   },
 
   app: {
