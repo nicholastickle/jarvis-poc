@@ -1,17 +1,18 @@
 
 import { useState } from 'react';
 import TTSPanel from "./components/TTSPanel";
+import ChatPanel from './components/ChatPanel.jsx';
 
 import './App.css'
 import { VoiceAssistant } from './components/VoiceAssistant.jsx'
 
 function App() {
 
-  
+
 
   return (
     <>
-      <div className="app-container">
+      {/* <div className="app-container">
         <header className="app-header">
           <h1>Jarvis - Voice Assistant</h1>
           <p>Speak to AI, get intelligent responses</p>
@@ -27,7 +28,11 @@ function App() {
             
           </section>
         </main>
-      </div>
+      </div> */}
+
+      <ChatPanel />
+
+
 
     </>
   )
